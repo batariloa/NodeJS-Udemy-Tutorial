@@ -2,7 +2,13 @@ require('dotenv').config();
 require('express-async-errors');
 
 const express = require('express');
+const bodyParser = require('body-parser')
+
 const app = express();
+
+const mainRouter = require('./routes/main')
+app.use(bodyParser.json())
+app.use('/api/v1',mainRouter)
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
